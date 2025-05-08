@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Carta para mi novia</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ffe4ec 0%, #f8cdda 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .carta-cerrada {
+            max-width: 400px;
+            margin: 60px auto 0 auto;
+            background: linear-gradient(135deg, #ffe4ec 60%, #f8cdda 100%);
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(215, 38, 96, 0.16), 0 1.5px 8px rgba(0, 0, 0, 0.10);
+            padding: 48px 24px 36px 24px;
+            border: 3.5px solid #d72660;
+            text-align: center;
+            cursor: pointer;
+            transition: box-shadow 0.2s, transform 0.2s;
+            position: relative;
+            animation: fadeIn 1.2s;
+        }
+
+        .carta-cerrada:hover {
+            box-shadow: 0 12px 40px #d7266040;
+            transform: scale(1.03);
+        }
+
+        .sobre-icono {
+            font-size: 3.5em;
+            margin-bottom: 18px;
+        }
+
+        .abrir-texto {
+            font-size: 1.2em;
+            color: #d72660;
+            font-family: 'Pacifico', cursive, sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .carta-container {
+            max-width: 600px;
+            margin: 24px auto;
+            background: #fff8fc;
+            border-radius: 28px 28px 36px 36px;
+            box-shadow: 0 8px 32px rgba(215, 38, 96, 0.16), 0 1.5px 8px rgba(0, 0, 0, 0.10);
+            padding: 32px 20px 28px 20px;
+            border: 3.5px solid #d72660;
+            position: relative;
+            overflow: hidden;
+            min-height: 480px;
+            animation: fadeIn 1.2s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.97);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .decoracion-superior,
+        .decoracion-inferior {
+            width: 80px;
+            height: 28px;
+            background: url('https://cdn.pixabay.com/photo/2013/07/12/13/57/heart-147622_1280.png') no-repeat center/contain;
+            margin: 0 auto;
+            opacity: 0.18;
+        }
+
+        .decoracion-superior {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 8px;
+        }
+
+        .decoracion-inferior {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 8px;
+            transform: rotate(180deg);
+        }
+
+        h1 {
+            color: #d72660;
+            text-align: center;
+            font-family: 'Pacifico', cursive, sans-serif;
+            font-size: 2.1em;
+            margin-bottom: 16px;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 8px #f8cdda88;
+        }
+
+        p {
+            font-size: 1.13em;
+            line-height: 1.7;
+            color: #4d2c3d;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 12px;
+            padding: 14px 14px;
+            box-shadow: 0 1px 4px rgba(215, 38, 96, 0.04);
+            margin-bottom: 0;
+        }
+
+        .firma {
+            margin-top: 36px;
+            text-align: right;
+            font-style: italic;
+            color: #d72660;
+            font-size: 1.08em;
+        }
+
+        #botones {
+            display: none;
+            text-align: center;
+            margin-top: 30px;
+            position: relative;
+            height: 80px;
+        }
+
+        button {
+            font-size: 1.08em;
+            padding: 10px 22px;
+            background: linear-gradient(90deg, #d72660 60%, #f06292 100%);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.2s, transform 0.2s, font-size 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 8px rgba(215, 38, 96, 0.10);
+        }
+
+        button#btn-no {
+            background: linear-gradient(90deg, #aaa 60%, #d72660 100%);
+            margin-left: 16px;
+            position: absolute;
+        }
+
+        button#btn-si:hover {
+            background: linear-gradient(90deg, #f06292 60%, #d72660 100%);
+            transform: scale(1.09);
+            box-shadow: 0 4px 16px #f8cdda55;
+        }
+
+        button#btn-no:hover {
+            background: linear-gradient(90deg, #888 60%, #d72660 100%);
+        }
+
+        #mensaje-perdon {
+            display: none;
+            text-align: center;
+            margin-top: 30px;
+            font-size: 1.25em;
+            color: #d72660;
+            font-family: 'Pacifico', cursive, sans-serif;
+            letter-spacing: 1px;
+            animation: fadeIn 1.2s;
+        }
+
+        /* Responsive para móvil */
+        @media (max-width: 600px) {
+            .carta-cerrada {
+                max-width: 90vw;
+                padding: 32px 8vw 24px 8vw;
+            }
+
+            .sobre-icono {
+                font-size: 2.2em;
+            }
+
+            .abrir-texto {
+                font-size: 1em;
+            }
+
+            .carta-container {
+                max-width: 98vw;
+                padding: 16px 4vw 18px 4vw;
+                min-height: 340px;
+            }
+
+            h1 {
+                font-size: 1.3em;
+            }
+
+            .decoracion-superior,
+            .decoracion-inferior {
+                width: 54px;
+                height: 18px;
+            }
+
+            p {
+                font-size: 1em;
+                padding: 10px 6px;
+            }
+
+            .firma {
+                font-size: 0.98em;
+            }
+
+            #botones {
+                height: 90px;
+            }
+
+            button {
+                font-size: 0.98em;
+                padding: 8px 12px;
+            }
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+    </style>
+</head>
+
+<body>
+    <div class="carta-cerrada" id="carta-cerrada">
+        <div class="sobre-icono">✉️</div>
+        <div class="abrir-texto">Haz clic para abrir la carta</div>
+    </div>
+    <div class="carta-container" id="carta-abierta" style="display:none;">
+        <div class="decoracion-superior"></div>
+        <h1>Para mi amor</h1>
+        <p id="carta-texto" style="min-height: 220px;"></p>
+        <div class="firma" id="firma" style="opacity:0;">
+            Con cariño,<br>
+            capibara marcos
+        </div>
+        <div id="botones" style="display:none; text-align:center; margin-top:30px; position:relative; height:80px;">
+            <button id="btn-si">Sí te perdono</button>
+            <button id="btn-no" style="position:absolute; left:60%; top:0;">No te perdono</button>
+        </div>
+        <div id="mensaje-perdon"></div>
+        <div class="decoracion-inferior"></div>
+    </div>
+    <script>
+        const texto = `Querida capibara :\n\nSé que en este momento estás enojada conmigo y quiero decirte, antes que nada, que lamento mucho lo que pasó. No fue mi intención hacerte enojar, mi bb.\n\nQuisiera que me perdones, por favor, y así vamos a ver la serie como dos capibaras. Te amo mucho.\n\nTe quiero mucho y no quiero perderte.`;
+        const carta = document.getElementById('carta-texto');
+        const firma = document.getElementById('firma');
+        const botones = document.getElementById('botones');
+        const mensajePerdon = document.getElementById('mensaje-perdon');
+        const cartaCerrada = document.getElementById('carta-cerrada');
+        const cartaAbierta = document.getElementById('carta-abierta');
+        let i = 0;
+        let cartaAbiertaYa = false;
+
+        function escribir() {
+            if (i < texto.length) {
+                if (texto[i] === '\n') {
+                    carta.innerHTML += '<br>';
+                } else {
+                    carta.innerHTML += texto[i];
+                }
+                i++;
+                setTimeout(escribir, 30);
+            } else {
+                firma.style.opacity = 1;
+                setTimeout(() => {
+                    botones.style.display = 'block';
+                }, 600);
+            }
+        }
+        cartaCerrada.onclick = function () {
+            if (cartaAbiertaYa) return;
+            cartaAbiertaYa = true;
+            cartaCerrada.style.display = 'none';
+            cartaAbierta.style.display = 'block';
+            escribir();
+        };
+        // Botones de perdón
+        let btnNo = null;
+        let btnSi = null;
+        let noFontSize = 1.1;
+
+        function activarBotones() {
+            btnNo = document.getElementById('btn-no');
+            btnSi = document.getElementById('btn-si');
+            // Botón NO se mueve de lugar
+            btnNo.addEventListener('mouseenter', function (e) {
+                const cont = botones.getBoundingClientRect();
+                const btn = btnNo.getBoundingClientRect();
+                // Limitar el área para que no salga de la carta
+                const maxLeft = cont.width - btn.width - 10;
+                const maxTop = cont.height - btn.height - 10;
+                const left = Math.random() * maxLeft;
+                const top = Math.random() * maxTop;
+                btnNo.style.left = left + 'px';
+                btnNo.style.top = top + 'px';
+            });
+            // Botón NO se hace más pequeño cada vez que lo tocan
+            btnNo.addEventListener('click', function (e) {
+                e.preventDefault();
+                noFontSize -= 0.15;
+                if (noFontSize < 0.3) noFontSize = 0.3;
+                btnNo.style.fontSize = noFontSize + 'em';
+                btnNo.style.padding = (10 * noFontSize) + 'px ' + (24 * noFontSize) + 'px';
+            });
+            btnSi.addEventListener('click', function () {
+                botones.style.display = 'none';
+                mensajePerdon.innerText = 'Sabías que me ibas a perdonar';
+                mensajePerdon.style.display = 'block';
+            });
+        }
+        // Esperar a que los botones existan en el DOM
+        const observer = new MutationObserver(function () {
+            if (document.getElementById('btn-no') && document.getElementById('btn-si')) {
+                activarBotones();
+                observer.disconnect();
+            }
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+    </script>
+</body>
+
+</html>
